@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-
+    <pre>{{rentalData}}</pre>
   </div>
 </template>
 
