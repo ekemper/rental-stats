@@ -11,27 +11,26 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      rentalData: null
     }
   },
   methods: {
     onConnect (socket) {
-      console.log('connected', socket);
-
+      console.log('connected', socket)
     },
-    onEvent (payload) {
-      console.log('event', payload)
+    onRxData (payload) {
+      console.log('onRxData', payload)
+      this.rentalData = payload
     },
     onDisconnect (client) {
       console.log('disconnected', client)
     }
   },
   mounted () {
-    var socket = io('http://localhost:2222')
-
-    socket.on('connect', this.onConnect)
-    socket.on('event', this.onEvent)
-    socket.on('disconnect', this.onDisconnect)
+    this.socket = io('http://localhost:2222')
+    this.socket.on('connect', this.onConnect)
+    this.socket.on('data', this.onRxData)
+    this.socket.on('disconnect', this.onDisconnect)
   }
 }
 
