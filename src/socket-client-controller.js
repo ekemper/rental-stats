@@ -25,7 +25,6 @@ export default class SocketClient {
   }
 
   onRentalData (payload) {
-    console.log('onRentalData', payload)
     this.store.commit('rentals/setRentalData', payload)
   }
 
